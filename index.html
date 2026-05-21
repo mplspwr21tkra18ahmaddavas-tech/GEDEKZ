@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KIRYU+ Interactive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0d1117;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    height:75px;
+    background:rgba(22,27,34,0.9);
+    backdrop-filter:blur(10px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid #242b36;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:#8b5cf6;
+    cursor:pointer;
+}
+
+.menu{
+    display:flex;
+    gap:25px;
+}
+
+.menu button{
+    background:none;
+    border:none;
+    color:#d1d5db;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+    position:relative;
+}
+
+.menu button:hover{
+    color:#8b5cf6;
+}
+
+.menu button::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:#8b5cf6;
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.menu button:hover::after{
+    width:100%;
+}
+
+.search-box{
+    background:#21262d;
+    padding:10px 15px;
+    border-radius:12px;
+}
+
+.search-box input{
+    background:none;
+    border:none;
+    outline:none;
+    color:white;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    width:100%;
+    height:100vh;
+    background:
+    linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)),
+    url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:60px;
+}
+
+.hero-content{
+    max-width:650px;
+    animation:fadeUp 1s ease;
+}
+
+.hero h1{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#d1d5db;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:#8b5cf6;
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    background:#7c3aed;
+}
+
+.btn-secondary{
+    background:#21262d;
+    color:white;
+}
+
+.btn-secondary:hover{
+    background:#2d3748;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:120px 50px 50px;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:30px;
+    border-left:5px solid #8b5cf6;
+    padding-left:15px;
+}
+
+/* ================= CARDS ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#161b22;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #232a35;
+    cursor:pointer;
+    transition:0.4s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.02);
+    border-color:#8b5cf6;
+    box-shadow:0 0 25px rgba(139,92,246,0.3);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.genre{
+    color:#8b5cf6;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.title{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.chapter{
+    color:#94a3b8;
+    margin-bottom:15px;
+}
+
+.card-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.card-buttons button{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.read-btn{
+    background:#8b5cf6;
+    color:white;
+}
+
+.read-btn:hover{
+    background:#7c3aed;
+}
+
+.bookmark-btn{
+    background:#21262d;
+    color:white;
+}
+
+.bookmark-btn:hover{
+    background:#2d3748;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+    padding:20px;
+}
+
+.modal-content{
+    background:#161b22;
+    width:100%;
+    max-width:950px;
+    border-radius:20px;
+    overflow:hidden;
+    animation:zoomIn 0.3s ease;
+    max-height:95vh;
+    overflow-y:auto;
+}
+
+.reader-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    border-bottom:1px solid #252c38;
+    position:sticky;
+    top:0;
+    background:#161b22;
+    z-index:5;
+}
+
+.reader-header h2{
+    font-size:25px;
+}
+
+.close-btn{
+    background:red;
+    color:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.reader-controls{
+    display:flex;
+    gap:10px;
+    padding:20px;
+}
+
+.reader-controls button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#8b5cf6;
+    color:white;
+}
+
+.reader-images{
+    padding:20px;
+}
+
+.reader-images img{
+    width:100%;
+    margin-bottom:20px;
+    border-radius:12px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#8b5cf6;
+    padding:15px 25px;
+    border-radius:12px;
+    display:none;
+    z-index:3000;
+    animation:fadeUp 0.3s ease;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes zoomIn{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        height:auto;
+        padding:20px;
+        gap:15px;
+    }
+
+    .menu{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        padding:30px;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo" onclick="scrollToTop()">
+KIRYU+
+</div>
+
+<div class="menu">
+<button onclick="goSection('popular')">Popular</button>
+<button onclick="goSection('latest')">Latest</button>
+<button onclick="showGenre()">Genre</button>
+<button onclick="showBookmarks()">Bookmark</button>
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Cari manhwa..." id="searchInput" onkeyup="searchManhwa()">
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Baca Manhwa Lebih Interaktif</h1>
+
+<p>
+Website baca manhwa modern dengan popup reader,
+bookmark, pencarian realtime, animasi, dark mode,
+dan tampilan seperti aplikasi Kiryu.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn btn-primary" onclick="goSection('popular')">
+Mulai Membaca
+</button>
+
+<button class="btn btn-secondary" onclick="randomManhwa()">
+Random Manhwa
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- POPULAR -->
+
+<section class="section" id="popular">
+
+<h2 class="section-title">Popular Manhwa</h2>
+
+<div class="grid" id="manhwaList">
+
+<!-- CARD -->
+
+<div class="card" data-title="Solo Leveling">
+
+<img src="https://picsum.photos/300/400?1">
+
+<div class="card-content">
+
+<div class="genre">Action • Fantasy</div>
+
+<div class="title">Solo Leveling</div>
+
+<div class="chapter">Chapter 201</div>
+
+<div class="card-buttons">
+
+<button class="read-btn"
+onclick="openReader('Solo Leveling')">
+Baca
+</button>
+
+<button class="bookmark-btn"
+onclick="bookmark(event,'Solo Leveling')">
+☆
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card" data-title="Nano Machine">
+
+<img src="https://picsum.photos/300/400?2">
+
+<div class="card-content">
+
+<div class="genre">Martial Arts</div>
+
+<div class="title">Nano Machine</div>
+
+<div class="chapter">Chapter 185</div>
+
+<div class="card-buttons">
+
+<button class="read-btn"
+onclick="openReader('Nano Machine')">
+Baca
+</button>
+
+<button class="bookmark-btn"
+onclick="bookmark(event,'Nano Machine')">
+☆
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card" data-title="Omniscient Reader">
+
+<img src="https://picsum.photos/300/400?3">
+
+<div class="card-content">
+
+<div class="genre">Adventure</div>
+
+<div class="title">Omniscient Reader</div>
+
+<div class="chapter">Chapter 210</div>
+
+<div class="card-buttons">
+
+<button class="read-btn"
+onclick="openReader('Omniscient Reader')">
+Baca
+</button>
+
+<button class="bookmark-btn"
+onclick="bookmark(event,'Omniscient Reader')">
+☆
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card" data-title="Tower Of God">
+
+<img src="https://picsum.photos/300/400?4">
+
+<div class="card-content">
+
+<div class="genre">Fantasy</div>
+
+<div class="title">Tower Of God</div>
+
+<div class="chapter">Chapter 620</div>
+
+<div class="card-buttons">
+
+<button class="read-btn"
+onclick="openReader('Tower Of God')">
+Baca
+</button>
+
+<button class="bookmark-btn"
+onclick="bookmark(event,'Tower Of God')">
+☆
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LATEST -->
+
+<section class="section" id="latest">
+
+<h2 class="section-title">Latest Update</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://picsum.photos/300/400?5">
+<div class="card-content">
+<div class="genre">Action</div>
+<div class="title">Mercenary Enrollment</div>
+<div class="chapter">Chapter 176</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/300/400?6">
+<div class="card-content">
+<div class="genre">Drama</div>
+<div class="title">Lookism</div>
+<div class="chapter">Chapter 511</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- MODAL -->
+
+<div class="modal" id="readerModal">
+
+<div class="modal-content">
+
+<div class="reader-header">
+
+<h2 id="readerTitle">
+Reader
+</h2>
+
+<button class="close-btn"
+onclick="closeReader()">
+✕
+</button>
+
+</div>
+
+<div class="reader-controls">
+
+<button onclick="prevChapter()">
+⬅ Prev
+</button>
+
+<button onclick="nextChapter()">
+Next ➡
+</button>
+
+<button onclick="toggleFullscreen()">
+Fullscreen
+</button>
+
+</div>
+
+<div class="reader-images">
+
+<img src="https://picsum.photos/800/1200?11">
+<img src="https://picsum.photos/800/1200?12">
+<img src="https://picsum.photos/800/1200?13">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+Bookmark berhasil ditambahkan
+</div>
+
+<script>
+
+/* ================= SCROLL ================= */
+
+function goSection(id){
+
+document.getElementById(id)
+.scrollIntoView({
+behavior:'smooth'
+});
+
+}
+
+function scrollToTop(){
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
+/* ================= SEARCH ================= */
+
+function searchManhwa(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let cards =
+document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let title =
+card.getAttribute("data-title");
+
+if(title){
+
+if(title.toLowerCase()
+.includes(input)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+}
+
+});
+
+}
+
+/* ================= READER ================= */
+
+function openReader(title){
+
+document.getElementById("readerModal")
+.style.display="flex";
+
+document.getElementById("readerTitle")
+.innerText=title;
+
+}
+
+function closeReader(){
+
+document.getElementById("readerModal")
+.style.display="none";
+
+}
+
+/* ================= BOOKMARK ================= */
+
+function bookmark(event,title){
+
+event.stopPropagation();
+
+showToast(title + " ditambahkan ke bookmark");
+
+}
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+let toast =
+document.getElementById("toast");
+
+toast.innerText = message;
+
+toast.style.display="block";
+
+setTimeout(()=>{
+
+toast.style.display="none";
+
+},2500);
+
+}
+
+/* ================= RANDOM ================= */
+
+function randomManhwa(){
+
+let titles = [
+
+"Solo Leveling",
+"Nano Machine",
+"Tower Of God",
+"Omniscient Reader"
+
+];
+
+let random =
+titles[Math.floor(Math.random()*titles.length)];
+
+openReader(random);
+
+}
+
+/* ================= GENRE ================= */
+
+function showGenre(){
+
+showToast("Genre: Action, Fantasy, Romance, Adventure");
+
+}
+
+/* ================= BOOKMARK PAGE ================= */
+
+function showBookmarks(){
+
+showToast("Fitur bookmark dibuka");
+
+}
+
+/* ================= CHAPTER ================= */
+
+function nextChapter(){
+
+showToast("Chapter berikutnya");
+
+}
+
+function prevChapter(){
+
+showToast("Chapter sebelumnya");
+
+}
+
+/* ================= FULLSCREEN ================= */
+
+function toggleFullscreen(){
+
+if(!document.fullscreenElement){
+
+document.documentElement.requestFullscreen();
+
+}else{
+
+document.exitFullscreen();
+
+}
+
+}
+
+/* ================= CLOSE OUTSIDE ================= */
+
+window.onclick = function(e){
+
+let modal =
+document.getElementById("readerModal");
+
+if(e.target == modal){
+
+modal.style.display="none";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
