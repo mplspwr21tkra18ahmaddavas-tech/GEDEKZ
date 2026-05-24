@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduNasional - Platform Edukasi Nasionalisme Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d50000, #ff9800);
+            color: white;
+            padding: 20px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: yellow;
+        }
+
+        .hero {
+            height: 90vh;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1400&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ffcc00;
+            color: black;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 70px 10%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title h2 {
+            font-size: 40px;
+            color: #c62828;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #e65100;
+        }
+
+        .timeline {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 5px solid #d50000;
+        }
+
+        .timeline-item h4 {
+            color: #d50000;
+            margin-bottom: 10px;
+        }
+
+        .impact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .good,
+        .bad {
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .good {
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
+        }
+
+        .bad {
+            background: linear-gradient(135deg, #c62828, #ef5350);
+        }
+
+        ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, #ff9800, #d50000);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .quote h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .quote p {
+            font-size: 20px;
+        }
+
+        @media(max-width:768px) {
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .impact {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">EduNasional</div>
+
+            <div class="menu">
+                <a href="#tentang">Tentang</a>
+                <a href="#wawasan">Wawasan Nusantara</a>
+                <a href="#fungsi">Fungsi</a>
+                <a href="#manfaat">Manfaat</a>
+                <a href="#dampak">Dampak</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Platform Edukasi Nasionalisme Digital</h1>
+
+            <p>
+                Membangun generasi muda Indonesia yang cinta tanah air,
+                memahami Wawasan Nusantara, dan bijak menggunakan teknologi digital.
+            </p>
+
+            <a href="#tentang" class="btn">Pelajari Sekarang</a>
+        </div>
+    </section>
+
+    <section id="tentang">
+        <div class="title">
+            <h2>Tentang Nasionalisme Digital</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🌍 Pengertian</h3>
+                <p>
+                    Nasionalisme digital adalah sikap cinta tanah air yang diwujudkan
+                    melalui penggunaan teknologi dan media digital secara positif,
+                    bijak, dan bertanggung jawab.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💻 Tujuan</h3>
+                <p>
+                    Membentuk generasi muda yang memiliki karakter kebangsaan,
+                    menjaga persatuan Indonesia, serta melawan hoaks dan ujaran kebencian.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🇮🇩 Generasi Modern</h3>
+                <p>
+                    Di era digital, nasionalisme tidak hanya dilakukan secara langsung,
+                    tetapi juga melalui media sosial, edukasi online, dan konten positif.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="wawasan">
+        <div class="title">
+            <h2>Terciptanya Wawasan Nusantara</h2>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <h4>1. Indonesia Negara Kepulauan</h4>
+                <p>
+                    Indonesia terdiri dari ribuan pulau dengan suku, budaya,
+                    bahasa, dan agama yang berbeda-beda.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>2. Menjaga Persatuan Bangsa</h4>
+                <p>
+                    Wawasan Nusantara lahir untuk menjaga keutuhan NKRI
+                    agar seluruh wilayah Indonesia tetap bersatu.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>3. Berdasarkan Pancasila dan UUD 1945</h4>
+                <p>
+                    Nilai-nilai Wawasan Nusantara bersumber dari Pancasila
+                    sebagai dasar negara dan pedoman kehidupan bangsa.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>4. Perkembangan Era Digital</h4>
+                <p>
+                    Di era modern, Wawasan Nusantara diperkuat melalui
+                    teknologi, pendidikan digital, dan media sosial.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="fungsi">
+        <div class="title">
+            <h2>Fungsi Wawasan Nusantara</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🛡️ Menjaga Persatuan</h3>
+                <p>
+                    Menyatukan seluruh masyarakat Indonesia
+                    meskipun memiliki perbedaan budaya dan daerah.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Pedoman Nasional</h3>
+                <p>
+                    Menjadi pedoman dalam kehidupan sosial,
+                    politik, ekonomi, budaya, dan pertahanan negara.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🤝 Memperkuat Solidaritas</h3>
+                <p>
+                    Menumbuhkan rasa kebersamaan,
+                    toleransi, dan gotong royong antar masyarakat.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="manfaat">
+        <div class="title">
+            <h2>Manfaat Nasionalisme Digital</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>📱 Edukasi Online</h3>
+                <p>
+                    Masyarakat lebih mudah mempelajari sejarah,
+                    budaya, dan nilai kebangsaan melalui internet.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎥 Konten Positif</h3>
+                <p>
+                    Generasi muda dapat membuat konten inspiratif
+                    yang memperkenalkan budaya Indonesia.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🌐 Memperkenalkan Indonesia</h3>
+                <p>
+                    Teknologi digital membantu mengenalkan budaya Indonesia
+                    kepada dunia internasional.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="dampak">
+        <div class="title">
+            <h2>Dampak Positif dan Negatif</h2>
+        </div>
+
+        <div class="impact">
+
+            <div class="good">
+                <h3>Dampak Positif ✅</h3>
+
+                <ul>
+                    <li>Meningkatkan rasa cinta tanah air.</li>
+                    <li>Mudah menyebarkan edukasi nasionalisme.</li>
+                    <li>Mempererat persatuan masyarakat.</li>
+                    <li>Mempromosikan budaya Indonesia.</li>
+                    <li>Meningkatkan kreativitas generasi muda.</li>
+                </ul>
+            </div>
+
+            <div class="bad">
+                <h3>Dampak Negatif ❌</h3>
+
+                <ul>
+                    <li>Penyebaran hoaks dan ujaran kebencian.</li>
+                    <li>Pengaruh budaya asing berlebihan.</li>
+                    <li>Kecanduan media sosial.</li>
+                    <li>Cyberbullying dan konflik digital.</li>
+                    <li>Menurunnya interaksi sosial langsung.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="quote">
+        <h2>“Bangsa yang besar adalah bangsa yang mencintai negaranya.”</h2>
+
+        <p>
+            Gunakan teknologi digital untuk menyebarkan persatuan,
+            toleransi, dan semangat kebangsaan Indonesia.
+        </p>
+    </section>
+
+    <footer>
+        <p>
+            © 2026 EduNasional | Platform Edukasi Nasionalisme Digital Indonesia
+        </p>
+    </footer>
+
+</body>
+
+</html>
